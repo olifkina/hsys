@@ -47,3 +47,5 @@ FetchContent_MakeAvailable(googlebenchmark)
 
 enable_testing()
 add_subdirectory(work1)
+
+add_subdirectory(work2)
