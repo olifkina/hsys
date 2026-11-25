@@ -1,12 +1,14 @@
 #pragma once
 
+#include <cuda_fp16.h>
+
 #include <cstddef>
 #include <type_traits>
 
 namespace hsys {
 
 template <typename AtomT>
-requires std::is_arithmetic_v<AtomT>
+requires (std::is_arithmetic_v<AtomT> || std::is_same_v<AtomT, __half>)
 class MatrixView {
 private:
     AtomT* data_{nullptr};

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cuda_fp16.h>
+
 #include "hsys/cuda_check.cuh"
 
 #include <cstddef>
@@ -10,7 +12,7 @@
 namespace hsys {
 
 template <typename AtomT>
-requires std::is_arithmetic_v<AtomT>
+requires (std::is_arithmetic_v<AtomT> || std::is_same_v<AtomT, __half>)
 class Data {
 private:
     std::size_t size_{0};

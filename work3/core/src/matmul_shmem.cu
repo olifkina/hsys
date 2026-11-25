@@ -120,7 +120,7 @@ Matrix<AtomT> matmul(const Matrix<AtomT>& lhs,
 }
 
 template <typename AtomT>
-requires std::is_arithmetic_v<AtomT>
+requires (std::is_arithmetic_v<AtomT> || std::is_same_v<AtomT, __half>)
 Matrix<AtomT> operator*(const Matrix<AtomT>& lhs, const Matrix<AtomT>& rhs) {
     static const ShmemMatMulStrategy<AtomT> default_strategy{};
     return matmul(lhs, rhs, default_strategy);

@@ -23,7 +23,7 @@ __global__ void kernel_matmul_naive(MatrixView<AtomT> a,
 }
 
 template <typename AtomT>
-requires std::is_arithmetic_v<AtomT>
+requires (std::is_arithmetic_v<AtomT> || std::is_same_v<AtomT, __half>)
 Matrix<AtomT> operator*(const Matrix<AtomT>& lhs, const Matrix<AtomT>& rhs) {
     if (lhs.ncols() != rhs.nrows()) {
         throw std::invalid_argument("Incompatible matrix dimensions for operator*");
